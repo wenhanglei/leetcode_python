@@ -6,3 +6,4 @@ My LeetCode Solution
 |---| ----- | -------- | ---------- |
 |325|[H-Index](array/h_index.py)|python|medium|
 |326|[H-IndexII](array/h_index2.py)|python|medium|
+|326|[Perfect Squares](array/perfect_squares.py)|python|medium|
