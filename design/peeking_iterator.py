@@ -17,7 +17,7 @@ class PeekingIterator(object):
         :type iterator: Iterator
         """
         self.iter = iterator
-        self.next_val = iterator.next() if iterator.hasNext() else None
+        self.next_val = iterator.cul() if iterator.hasNext() else None
 
     def peek(self):
         """
@@ -31,7 +31,7 @@ class PeekingIterator(object):
         :rtype: int
         """
         temp = self.next_val
-        self.next_val = self.iter.next() if self.iter.hasNext() else None
+        self.next_val = self.iter.cul() if self.iter.hasNext() else None
         return temp
 
     def hasNext(self):
