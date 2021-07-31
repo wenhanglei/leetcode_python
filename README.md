@@ -9,3 +9,4 @@ My LeetCode Solution
 |327|[Perfect Squares](array/perfect_squares.py)|python|medium|
 |328|[Find Duplicate Answer](design/find_duplicate_answer.py)|python|medium|
 |329|[Game of Life](array/game_of_life.py)|python|medium|
+|329|[Bulls and Cows](string/bulls_and_cows.py)|python|medium|
