@@ -7,16 +7,30 @@ order of the remaining elements. For example, [3,6,2,7] is a subsequence of the 
 
 
 class Solution(object):
+
+    def __init__(self):
+        self.max = 1
+
     def lengthOfLIS(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """
-        ret = 1
-        lo = 0
-        for i in range(len(nums)):
-            if nums[i+1] > nums[i]:
-                ret += 1
+        self.max = 1
+        m = len(nums)
+        for i in range(m):
+            self.traverse(nums, i, m, 1)
+        return self.max
+
+    def traverse(self, nums, i, m, depth):
+        curr = nums[i]
+        for j in range(i+1, m):
+            if nums[j] > curr:
+                self.traverse(nums, j, m, depth+1)
+        if depth > self.max:
+            self.max = depth
+
+
 
 cases = [
     {
@@ -30,6 +44,10 @@ cases = [
     {
         "arg": [4, 10, 4, 3, 8, 9],
         "expect": 3
+    },
+    {
+        "arg": [0, 1, 0, 3, 2, 3],
+        "expect": 4
     },
 ]
 
