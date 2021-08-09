@@ -21,25 +21,22 @@ class Solution(object):
         """
         self.max = 0
         size = len(prices)
-        self.opt(prices, 0, size, False, 0)
+        self.opt(prices, 0, size, 0)
         return self.max
 
-    def opt(self, prices, i, size, buyed, sum):
-        if i >= size:
-            self.max = max(sum, self.max)
-            return
-        self.opt(prices, i + 1, size, buyed, sum)
-        if buyed:
-            self.opt(prices, i + 2, size, not buyed, sum + prices[i])
-        else:
-            self.opt(prices, i + 1, size, not buyed, sum - prices[i])
+    def opt(self, prices, i, size, sum):
+        self.buy(prices, i, size, sum)
+
 
 
 if __name__ == "__main__":
     # prices = [1, 2, 3, 0, 2]
-    prices = [48, 12, 60, 93, 97, 42, 25, 64, 17, 56, 85, 93, 9, 48, 52, 42, 58, 85, 81, 84, 69, 36, 1, 54, 23, 15, 72,
-              15, 11, 94]
+    # prices = [48, 12, 60, 93, 97, 42, 25, 64, 17, 56, 85, 93, 9, 48, 52, 42, 58, 85, 81, 84, 69, 36, 1, 54, 23, 15, 72,
+    #           15, 11, 94]
     # prices = [1]
+    # prices = [2, 1]
+    # prices = [1, 4, 2]
+    prices = [6, 1, 3, 2, 4, 7]
     s = Solution()
     r = s.maxProfit(prices)
     print(r)
