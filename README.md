@@ -4,7 +4,7 @@ My LeetCode Solution
 
 | # | Title | Solution | Difficulty |
 |---| ----- | -------- | ---------- |
-|335|[Best Time to Buy and Sell Stock with Cooldown](array/best_time_to_buy and_sell_stock.py)|python|medium|
+|335|[Best Time to Buy and Sell Stock](array/best_time_to_buy and_sell_stock.py)|python|medium|
 |334|[Range Sum Query - Mutable](string/range_sum_query.py)|python|medium|
 |333|[Additive Number](string/additive_number.py)|python|medium|
 |332|[Range Sum Query 2D - Immutable](array/range_sum_query_2D.py)|python|medium|
