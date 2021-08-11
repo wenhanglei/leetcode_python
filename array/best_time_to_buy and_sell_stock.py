@@ -19,24 +19,25 @@ class Solution(object):
         :type prices: List[int]
         :rtype: int
         """
-        self.max = 0
         size = len(prices)
-        self.opt(prices, 0, size, 0)
-        return self.max
-
-    def opt(self, prices, i, size, sum):
-        self.buy(prices, i, size, sum)
+        i = 0
+        while(i < size-1 and prices[i] >= prices[i+1]): i += 1
+        if i == size - 1: return 0
+        j = size-1
+        while(j > 1 and prices[j-1] >= prices[j]): j -= 1
+        if j == 1: return 0
+        return prices[j] - prices[i]
 
 
 
 if __name__ == "__main__":
-    # prices = [1, 2, 3, 0, 2]
+    prices = [1, 2, 3, 0, 2]
     # prices = [48, 12, 60, 93, 97, 42, 25, 64, 17, 56, 85, 93, 9, 48, 52, 42, 58, 85, 81, 84, 69, 36, 1, 54, 23, 15, 72,
     #           15, 11, 94]
     # prices = [1]
     # prices = [2, 1]
     # prices = [1, 4, 2]
-    prices = [6, 1, 3, 2, 4, 7]
+    # prices = [6, 1, 3, 2, 4, 7]
     s = Solution()
     r = s.maxProfit(prices)
     print(r)
