@@ -16,24 +16,26 @@ class Solution(object):
         :type prices: List[int]
         :rtype: int
         """
-
-
-    def traverse(self, rets, prices, i):
-        newRet = []
-        for i, p in rets:
-            if i == 0:
-                newRet.append((1, ))
-
+        size = len(prices)
+        s0, s1, s2 = [0] * size, [0] * size, [0] * size
+        s0[0] = -prices[0]
+        s1[0] = 0
+        s2[0] = 0
+        for i in range(1, size):
+            s0[i] = max(s0[i - 1], s2[i - 1] - prices[i])
+            s1[i] = s0[i - 1] + prices[i]
+            s2[i] = max(s0[i - 1], s1[i - 1], s2[i - 1])
+        return max(s1[-1], s2[-1])
 
 
 if __name__ == "__main__":
     # prices = [1, 2, 3, 0, 2]
-    # prices = [48, 12, 60, 93, 97, 42, 25, 64, 17, 56, 85, 93, 9, 48, 52, 42, 58, 85, 81, 84, 69, 36, 1, 54, 23, 15, 72,
-    #           15, 11, 94]
+    prices = [48, 12, 60, 93, 97, 42, 25, 64, 17, 56, 85, 93, 9, 48, 52, 42, 58, 85, 81, 84, 69, 36, 1, 54, 23, 15, 72,
+              15, 11, 94]
     # prices = [1]
     # prices = [2, 1]
     # prices = [1, 4, 2]
-    prices = [6, 1, 3, 2, 4, 7]
+    # prices = [6, 1, 3, 2, 4, 7]
     s = Solution()
     r = s.maxProfit(prices)
     print(r)
