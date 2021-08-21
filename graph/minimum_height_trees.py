@@ -20,30 +20,35 @@ class Solution(object):
         :type edges: List[List[int]]
         :rtype: List[int]
         """
-        v = [[]] * n
+        v = [None] * n
         for i, j in edges:
+            if v[i] is None:
+                v[i] = []
+            if v[j] is None:
+                v[j] = []
             v[i].append(j)
+            v[j].append(i)
         depths = [0] * n
         for i in range(n):
             self.dfs(i, v, [False] * n, 1, depths)
         m = min(*depths)
         return [idx for idx, i in enumerate(depths) if i == m]
 
-    def dfs(self, i, graph, scaned, depth, depths):
-        if scaned[i]:
+    def dfs(self, i, graph, scanned, depth, depths):
+        if scanned[i]:
             if depth >= depths[i]:
                 depths[i] = depth
             return
-        scaned[i] = True
+        scanned[i] = True
         for j in graph[i]:
-            self.dfs(j, graph, scaned, depth+1, depths)
+            self.dfs(j, graph, scanned, depth + 1, depths)
         if depth >= depths[i]:
             depths[i] = depth
-
 
 
 if __name__ == "__main__":
     n = 6
     edges = [[3, 0], [3, 1], [3, 2], [3, 4], [5, 4]]
     s = Solution()
-    s.findMinHeightTrees(n, edges)
+    ret = s.findMinHeightTrees(n, edges)
+    print("result %s" % ret)
