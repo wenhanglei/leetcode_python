@@ -20,35 +20,46 @@ class Solution(object):
         :type edges: List[List[int]]
         :rtype: List[int]
         """
-        v = [None] * n
-        for i, j in edges:
-            if v[i] is None:
-                v[i] = []
-            if v[j] is None:
-                v[j] = []
-            v[i].append(j)
-            v[j].append(i)
-        depths = [0] * n
-        for i in range(n):
-            self.dfs(i, v, [False] * n, 1, depths)
-        m = min(*depths)
-        return [idx for idx, i in enumerate(depths) if i == m]
 
-    def dfs(self, i, graph, scanned, depth, depths):
+    def graph(self, n, edges):
+        g = [None] * n
+        for i, j in edges:
+            if g[i] is None:
+                g[i] = []
+            if g[j] is None:
+                g[j] = []
+            g[i].append(j)
+            g[j].append(i)
+        return g
+
+    def dfs(self, s, i, graph, scanned, depth, depths):
         if scanned[i]:
-            if depth >= depths[i]:
-                depths[i] = depth
+            if depth >= depths[s]:
+                depths[s] = depth
             return
         scanned[i] = True
         for j in graph[i]:
-            self.dfs(j, graph, scanned, depth + 1, depths)
-        if depth >= depths[i]:
-            depths[i] = depth
+            self.dfs(s, j, graph, scanned, depth + 1, depths)
 
-
-if __name__ == "__main__":
+def test_graph():
     n = 6
     edges = [[3, 0], [3, 1], [3, 2], [3, 4], [5, 4]]
     s = Solution()
-    ret = s.findMinHeightTrees(n, edges)
-    print("result %s" % ret)
+    r = s.graph(n, edges)
+    for idx, i in enumerate(r):
+        print("%s => %s" % (idx, i))
+
+def test_dfs():
+    n = 6
+    edges = [[3, 0], [3, 1], [3, 2], [3, 4], [5, 4]]
+    s = Solution()
+    r = s.graph(n, edges)
+    depths = [0] * n
+    s.dfs(1, 1, r, [False]*n, 0, depths)
+    print(depths[0])
+
+
+if __name__ == "__main__":
+    test_graph()
+    print("="*20)
+    test_dfs()
