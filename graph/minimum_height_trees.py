@@ -14,12 +14,21 @@ The height of a rooted tree is the number of edges on the longest downward path 
 
 
 class Solution(object):
+
     def findMinHeightTrees(self, n, edges):
         """
         :type n: int
         :type edges: List[List[int]]
         :rtype: List[int]
         """
+        if n == 1:
+            return []
+        g = self.graph(n, edges)
+        depths = [0] * n
+        for i in range(n):
+            self.dfs(i, i, g, [False]*n, 1, depths)
+        mi = min(*depths)
+        return [idx for idx, i in enumerate(depths) if i == mi]
 
     def graph(self, n, edges):
         g = [None] * n
@@ -32,34 +41,12 @@ class Solution(object):
             g[j].append(i)
         return g
 
-    def dfs(self, s, i, graph, scanned, depth, depths):
-        if scanned[i]:
-            if depth >= depths[s]:
-                depths[s] = depth
-            return
-        scanned[i] = True
-        for j in graph[i]:
-            self.dfs(s, j, graph, scanned, depth + 1, depths)
-
-def test_graph():
-    n = 6
-    edges = [[3, 0], [3, 1], [3, 2], [3, 4], [5, 4]]
-    s = Solution()
-    r = s.graph(n, edges)
-    for idx, i in enumerate(r):
-        print("%s => %s" % (idx, i))
-
-def test_dfs():
-    n = 6
-    edges = [[3, 0], [3, 1], [3, 2], [3, 4], [5, 4]]
-    s = Solution()
-    r = s.graph(n, edges)
-    depths = [0] * n
-    s.dfs(1, 1, r, [False]*n, 0, depths)
-    print(depths[0])
+    def dfs(self, o, n, g, flags, depth, depths):
+        flags[n] = True
+        for v in g[n]:
+            if not flags[v]:
+                self.dfs(o, v, g, flags, depth+1, depths)
+        if depth > depths[o]:
+            depths[o] = depth
 
 
-if __name__ == "__main__":
-    test_graph()
-    print("="*20)
-    test_dfs()
