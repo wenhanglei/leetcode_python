@@ -21,32 +21,9 @@ class Solution(object):
         :type edges: List[List[int]]
         :rtype: List[int]
         """
-        if n == 1:
-            return []
-        g = self.graph(n, edges)
-        depths = [0] * n
-        for i in range(n):
-            self.dfs(i, i, g, [False]*n, 1, depths)
-        mi = min(*depths)
-        return [idx for idx, i in enumerate(depths) if i == mi]
 
-    def graph(self, n, edges):
-        g = [None] * n
-        for i, j in edges:
-            if g[i] is None:
-                g[i] = []
-            if g[j] is None:
-                g[j] = []
-            g[i].append(j)
-            g[j].append(i)
-        return g
 
-    def dfs(self, o, n, g, flags, depth, depths):
-        flags[n] = True
-        for v in g[n]:
-            if not flags[v]:
-                self.dfs(o, v, g, flags, depth+1, depths)
-        if depth > depths[o]:
-            depths[o] = depth
+
+
 
 
