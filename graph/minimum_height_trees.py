@@ -21,6 +21,27 @@ class Solution(object):
         :type edges: List[List[int]]
         :rtype: List[int]
         """
+        if n == 1:
+            return [0]
+        if len(edges) == 1:
+            return edges[0]
+        degree = [0] * n
+        for i, j in edges:
+            degree[i] += 1
+            degree[j] += 1
+        leaves = [idx for idx, i in enumerate(degree) if i == 1]
+        nonleaves = [idx for idx, i in enumerate(degree) if i > 1]
+        if len(nonleaves) <= 2:
+            return nonleaves
+        else:
+            left = []
+            for edge in edges:
+                for i in leaves:
+                    if i in edge:
+                        break
+                else:
+                    left.append(edge)
+            return self.findMinHeightTrees(n, left)
 
 
 
