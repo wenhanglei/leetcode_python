@@ -17,31 +17,21 @@ class Solution(object):
         if n == 1:
             return 1
         l = [1]
-        for k in range(n-1):
+        for k in range(n - 1):
             current = l[-1]
-            idx = 0
+            idx = len(l)-1
             m = current
-            for j in primes[::-1]:
-                while idx < len(l):
-                    if j * l[idx] > current:
+            for j in primes:
+                while idx >= 0:
+                    if j * l[idx] <= current:
                         break
-                    idx += 1
-                else:
-                    break
+                    idx -= 1
                 if m == current:
-                    m = j * l[idx]
-                elif j * l[idx] < m:
-                    m = j * l[idx]
-            if m > current:
-                l.append(m)
+                    m = j * l[idx+1]
+                elif j * l[idx+1] < m:
+                    m = j * l[idx+1]
+            l.append(m)
         return l[-1]
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
