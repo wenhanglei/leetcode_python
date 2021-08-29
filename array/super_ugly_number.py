@@ -16,27 +16,25 @@ class Solution(object):
         """
         if n == 1:
             return 1
-        l = [1]
-        for k in range(n - 1):
-            current = l[-1]
-            idx = len(l)-1
-            m = current
-            for j in primes:
-                while idx >= 0:
-                    if j * l[idx] <= current:
-                        break
-                    idx -= 1
-                if m == current:
-                    m = j * l[idx+1]
-                elif j * l[idx+1] < m:
-                    m = j * l[idx+1]
-            l.append(m)
-        return l[-1]
+        if len(primes) == 1:
+            return primes[0] ** (n-1)
+        l = primes[:]
+        for i in range(n-2):
+            (idx, j) = self.minimal(l)
+            print(j)
+            l[idx] = j * primes[0]
+        return min(*l)
+
+    def minimal(self, n):
+        mi = min(*n)
+        for idx, i in enumerate(n):
+            if i == mi:
+                return idx, i
 
 
 if __name__ == "__main__":
-    n = 12
-    primes = [2, 7, 13, 19]
+    n = 15
+    primes = [3,5,7,11,19,23,29,41,43,47]
     s = Solution()
     r = s.nthSuperUglyNumber(n, primes)
     print(r)
