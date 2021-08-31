@@ -5,7 +5,7 @@ Given an integer n and an array of integers primes, return the nth super ugly nu
 
 The nth super ugly number is guaranteed to fit in a 32-bit signed integer.
 """
-
+import heapq
 
 class Solution(object):
     def nthSuperUglyNumber(self, n, primes):
@@ -14,27 +14,22 @@ class Solution(object):
         :type primes: List[int]
         :rtype: int
         """
-        if n == 1:
-            return 1
-        if len(primes) == 1:
-            return primes[0] ** (n-1)
-        l = primes[:]
-        for i in range(n-2):
-            (idx, j) = self.minimal(l)
-            print(j)
-            l[idx] = j * primes[0]
-        return min(*l)
+        uglies = [1]
+        def gen(prime):
+            for ugly in uglies:
+                yield ugly * prime
+        merged = heapq.merge(*map(gen, primes))
+        while len(uglies) < n:
+            nv = next(merged)
+            if nv != uglies[-1]:
+                uglies.append(nv)
+        return uglies[-1]
 
-    def minimal(self, n):
-        mi = min(*n)
-        for idx, i in enumerate(n):
-            if i == mi:
-                return idx, i
 
 
 if __name__ == "__main__":
-    n = 15
-    primes = [3,5,7,11,19,23,29,41,43,47]
+    n = 12
+    primes = [2,7,13,19]
     s = Solution()
     r = s.nthSuperUglyNumber(n, primes)
     print(r)
