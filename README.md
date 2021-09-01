@@ -4,6 +4,7 @@ My LeetCode Solution
 
 | # | Title | Solution | Difficulty |
 |---| ----- | -------- | ---------- |
+|338|[Remove Duplicate Letters](string/remove_duplicate_letters.py)|python|medium|
 |337|[Super Ugly Number](array/super_ugly_number.py)|python|medium|
 |336|[Minimum Height Trees](graph/minimum_height_trees.py)|python|medium|
 |335|[Best Time to Buy and Sell Stock_With_Cooldown_Pending](array/best_time_to_buy_and_sell_stock.py)|python|medium|
