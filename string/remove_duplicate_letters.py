@@ -15,27 +15,11 @@ class Solution(object):
             if i not in m:
                 m[i] = []
             m[i].append(idx)
-        keys = [i for i in m]
-        self.text = None
-        self.traverse(keys, 0, m, [], list(s))
-        return self.text
+        li = list(s)
+        for i in m:
+            if len(m[i]) > 1:
+                temp = li[:]
 
-    def traverse(self, keys, next, m, r, l):
-        if next >= len(keys):
-            t = self.merge(r[:], l)
-            if self.text is None:
-                self.text = t
-            else:
-                self.text = min(self.text, t)
-            return
-        for i in m[keys[next]]:
-            r.append(i)
-            self.traverse(keys, next+1, m, r, l)
-            del r[-1]
-
-    def merge(self, l, o):
-        l.sort()
-        return ''.join([o[i] for i in l])
 
 
 if __name__ == "__main__":
