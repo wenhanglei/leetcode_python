@@ -10,20 +10,28 @@ class Solution(object):
         :type s: str
         :rtype: str
         """
-        m = {}
+        ret = []
+        last_index = {}
         for idx, i in enumerate(s):
-            if i not in m:
-                m[i] = []
-            m[i].append(idx)
-        li = list(s)
-        for i in m:
-            if len(m[i]) > 1:
-                temp = li[:]
+            last_index[i] = idx
+        for idx, i in enumerate(s):
+            self.handle(ret, i, idx, last_index)
+            if i not in ret:
+                ret.append(i)
+        return ''.join(ret)
+
+    def handle(self, ret, key, curIndex, lastIndex):
+        if ret and key not in ret and key < ret[-1] and lastIndex[ret[-1]] > curIndex:
+            del ret[-1]
+            self.handle(ret, key, curIndex, lastIndex)
+
+
+
 
 
 
 if __name__ == "__main__":
-    s = "cbacdcbc"
+    s = "abacb"
     sol = Solution()
     r = sol.removeDuplicateLetters(s)
     print(r)
