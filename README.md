@@ -4,6 +4,7 @@ My LeetCode Solution
 
 | # | Title | Solution | Difficulty |
 |---| ----- | -------- | ---------- |
+|338|[Maximum Product of Word Lengths](string/maximum_product_of_word_lengths.py)|python|medium|
 |338|[Remove Duplicate Letters](string/remove_duplicate_letters.py)|python|medium|
 |337|[Super Ugly Number](array/super_ugly_number.py)|python|medium|
 |336|[Minimum Height Trees](graph/minimum_height_trees.py)|python|medium|
