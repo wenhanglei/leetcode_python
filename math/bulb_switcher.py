@@ -14,17 +14,13 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        if n <= 1: return n
-        bulbs = [True] * n
-        for i in range(2, n+1):
-            for j in range(i, n+1, i):
-                bulbs[j-1] = not bulbs[j-1]
-        r = 0
-        for i in range(n):
-            if bulbs[i]: r +=1
-        return r
-
-
+        r = 1
+        while True:
+            if (r ** 2) > n:
+                break
+            else:
+                r += 1
+        return r - 1
 
 
 if __name__ == "__main__":
