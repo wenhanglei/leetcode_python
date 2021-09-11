@@ -4,6 +4,7 @@ My LeetCode Solution
 
 | # | Title | Solution | Difficulty |
 |---| ----- | -------- | ---------- |
+|341|[Coin Change](array/coin_change.py)|python|medium|
 |340|[Bulb Switcher](math/bulb_switcher.py)|python|medium|
 |339|[Maximum Product of Word Lengths](string/maximum_product_of_word_lengths.py)|python|medium|
 |338|[Remove Duplicate Letters](string/remove_duplicate_letters.py)|python|medium|
