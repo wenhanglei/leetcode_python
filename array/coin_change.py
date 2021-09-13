@@ -15,35 +15,30 @@ class Solution(object):
         :type amount: int
         :rtype: int
         """
-        if amount == 0:
-            return 0
-        self.hight = 0
-        if self.traverse(coins, amount, 0):
-            return self.hight
-        return -1
-
+        if amount == 0: return 0
+        self.depth = 0
+        coins.sort()
+        return self.depth if self.traverse(coins[::-1], amount, 0) else -1
 
     def traverse(self, coins, amount, depth):
         if amount == 0:
-            if self.hight == 0:
-                self.hight = depth
-            elif depth < self.hight:
-                self.hight = depth
+            self.depth = depth
             return True
         elif amount < 0:
             return False
         else:
-            isValid = False
             for coin in coins:
-                if amount >= coin and self.traverse(coins, amount - coin, depth+1):
-                    isValid = True
-            return isValid
+                if amount >= coin:
+                    if self.traverse(coins, amount-coin, depth+1):
+                        return True
+        return False
+
 
 
 
 if __name__ == "__main__":
-    coins = [1, 2, 5]
-    amount = 100
+    coins = [186,419,83,408]
+    amount = 6249
     sol = Solution()
     r = sol.coinChange(coins, amount)
     print(r)
