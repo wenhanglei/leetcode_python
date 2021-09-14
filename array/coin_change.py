@@ -15,23 +15,28 @@ class Solution(object):
         :type amount: int
         :rtype: int
         """
-        if amount == 0: return 0
-        self.depth = 0
-        coins.sort()
-        return self.depth if self.traverse(coins[::-1], amount, 0) else -1
+        nums = {}
+        self.traverse(coins, amount, nums)
+        return nums[amount]
 
-    def traverse(self, coins, amount, depth):
+    def traverse(self, coins, amount, nums):
+        if amount in nums:
+            return nums[amount]
         if amount == 0:
-            self.depth = depth
-            return True
+            return 0
         elif amount < 0:
-            return False
-        else:
-            for coin in coins:
-                if amount >= coin:
-                    if self.traverse(coins, amount-coin, depth+1):
-                        return True
-        return False
+            return -1
+        r = -1
+        for coin in coins:
+            tmp = self.traverse(coins, amount-coin, nums)
+            if tmp != -1:
+                if r == -1 or tmp < r:
+                    r = tmp
+        if r == -1:
+            return -1
+        nums[amount] = r+1
+        return r+1
+
 
 
 
