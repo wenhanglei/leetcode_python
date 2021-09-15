@@ -15,35 +15,30 @@ class Solution(object):
         :type amount: int
         :rtype: int
         """
-        nums = {}
-        self.traverse(coins, amount, nums)
-        return nums[amount]
-
-    def traverse(self, coins, amount, nums):
-        if amount in nums:
-            return nums[amount]
         if amount == 0:
             return 0
-        elif amount < 0:
-            return -1
-        r = -1
-        for coin in coins:
-            tmp = self.traverse(coins, amount-coin, nums)
-            if tmp != -1:
-                if r == -1 or tmp < r:
-                    r = tmp
-        if r == -1:
-            return -1
-        nums[amount] = r+1
-        return r+1
-
-
-
-
+        m = min(coins)
+        size = amount // m
+        checked = set()
+        amts = list(coins)
+        if amount in amts:
+            return 1
+        for i in range(2, size+1):
+            tempAmts = []
+            for amt in amts:
+                for coin in coins:
+                    val = amt+coin
+                    if amount == val:
+                        return i
+                    if val not in checked:
+                        checked.add(val)
+                        tempAmts.append(val)
+            amts = tempAmts
+        return -1
 
 if __name__ == "__main__":
-    coins = [186,419,83,408]
-    amount = 6249
+    coins = [1]
+    amount = 1
     sol = Solution()
     r = sol.coinChange(coins, amount)
     print(r)
