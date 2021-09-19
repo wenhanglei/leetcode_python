@@ -4,6 +4,7 @@ My LeetCode Solution
 
 | # | Title | Solution | Difficulty |
 |---| ----- | -------- | ---------- |
+|343|[Odd Even Linked List](list/odd_even_linked_list.py)|python|medium|
 |342|[Wiggle Sort II](array/wiggle_sort_II.py)|python|medium|
 |341|[Coin Change](array/coin_change.py)|python|medium|
 |340|[Bulb Switcher](math/bulb_switcher.py)|python|medium|
