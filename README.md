@@ -4,6 +4,7 @@ My LeetCode Solution
 
 | # | Title | Solution | Difficulty |
 |---| ----- | -------- | ---------- |
+|344|[Verify Preorder Serialization of a Binary Tree](list/odd_even_linked_list.py)|python|medium|
 |343|[Odd Even Linked List](list/odd_even_linked_list.py)|python|medium|
 |342|[Wiggle Sort II](array/wiggle_sort_II.py)|python|medium|
 |341|[Coin Change](array/coin_change.py)|python|medium|
