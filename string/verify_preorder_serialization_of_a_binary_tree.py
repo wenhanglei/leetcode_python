@@ -9,7 +9,11 @@ class Solution(object):
         :type preorder: str
         :rtype: bool
         """
+        #考虑使用栈解决
 
 
 if __name__ == "__main__":
-    pass
+    preorder = "9,3,4,#,#,1,#,#,2,#,6,#,#"
+    sol = Solution()
+    r = sol.isValidSerialization(preorder)
+    print(r)
