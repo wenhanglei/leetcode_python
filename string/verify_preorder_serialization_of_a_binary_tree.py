@@ -9,11 +9,22 @@ class Solution(object):
         :type preorder: str
         :rtype: bool
         """
-        #考虑使用栈解决
+        li = preorder.split(',')
+        if len(li) % 2 == 0:
+            return False
+        num = 0
+        for ch in li:
+            if ch == '#':
+                num += 1
+        if num != (len(li) + 1) // 2:
+            return False
+        return True
+
+
 
 
 if __name__ == "__main__":
-    preorder = "9,3,4,#,#,1,#,#,2,#,6,#,#"
+    preorder = "9,#,#,1"
     sol = Solution()
     r = sol.isValidSerialization(preorder)
     print(r)
