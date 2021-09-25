@@ -9,22 +9,22 @@ class Solution(object):
         :type preorder: str
         :rtype: bool
         """
-        li = preorder.split(',')
-        if len(li) % 2 == 0:
-            return False
-        num = 0
-        for ch in li:
-            if ch == '#':
-                num += 1
-        if num != (len(li) + 1) // 2:
-            return False
-        return True
+        nodes = preorder.split(',')
+        st = []
+        for i in nodes:
+            st.append(i)
+            while i == '#' and len(st) >= 3 and st[-1] == '#' and st[-2] == '#' and st[-3] != '#':
+                st.pop()
+                st.pop()
+                st.pop()
+                st.append('#')
+        return len(st) == 1 and st[-1] == '#'
 
 
 
 
 if __name__ == "__main__":
-    preorder = "9,#,#,1"
+    preorder = "9,3,4,#,#,1,#,#,2,#,6,#,#"
     sol = Solution()
     r = sol.isValidSerialization(preorder)
     print(r)
