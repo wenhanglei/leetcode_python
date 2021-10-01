@@ -17,15 +17,13 @@ class Solution(object):
         :type tickets: List[List[str]]
         :rtype: List[str]
         """
+        tickets.sort(key=lambda x: x[1], reverse=True)
         nodes = {}
-        r = []
         for i, j in tickets:
             if i not in nodes:
                 nodes[i] = []
             nodes[i].append(j)
-        for key in nodes:
-            nodes[key].sort()
-        r.append('JFK')
+        r = ["JFK",]
         while True:
             temp = r[-1]
             if temp not in nodes or not nodes[temp]:
@@ -35,9 +33,8 @@ class Solution(object):
         return r
 
 
-
 if __name__ == "__main__":
-    tickets = [["JFK","KUL"],["JFK","NRT"],["NRT","JFK"]]
+    tickets = [["JFK", "KUL"], ["JFK", "NRT"], ["NRT", "JFK"]]
     sol = Solution()
     r = sol.findItinerary(tickets)
     print(r)
