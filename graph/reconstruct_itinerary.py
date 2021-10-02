@@ -17,24 +17,34 @@ class Solution(object):
         :type tickets: List[List[str]]
         :rtype: List[str]
         """
-        tickets.sort(key=lambda x: x[1], reverse=True)
+        tickets.sort(key=lambda x: x[1])
         nodes = {}
         for i, j in tickets:
             if i not in nodes:
                 nodes[i] = []
             nodes[i].append(j)
-        r = ["JFK",]
-        while True:
-            temp = r[-1]
-            if temp not in nodes or not nodes[temp]:
-                break
-            r.append(nodes[temp][0])
-            nodes[temp] = nodes[temp][1:]
-        return r
+        r = ['JFK',]
+        self.dfs(nodes, len(tickets), r)
+
+    def dfs(self, nodes, size, it):
+        if size == 0:
+            return True
+        curr = it[-1]
+        edges = nodes[curr]
+        for e in edges:
+            nodes[curr] = edges[:].remove(e)
+            it.append(e)
+            if self.dfs(nodes, size-1, it):
+                return True
+            nodes[curr] = edges
+        return False
+
+
+
 
 
 if __name__ == "__main__":
-    tickets = [["JFK", "KUL"], ["JFK", "NRT"], ["NRT", "JFK"]]
+    tickets = [["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]]
     sol = Solution()
     r = sol.findItinerary(tickets)
     print(r)
