@@ -23,28 +23,31 @@ class Solution(object):
             if i not in nodes:
                 nodes[i] = []
             nodes[i].append(j)
-        r = ['JFK',]
-        self.dfs(nodes, len(tickets), r)
+        r = ['JFK', ]
+        return r if self.dfs(nodes, r, len(tickets)) else []
 
-    def dfs(self, nodes, size, it):
+    def dfs(self, nodes, retList, size):
         if size == 0:
             return True
-        curr = it[-1]
+        curr = retList[-1]
+        if curr not in nodes:
+            return False
         edges = nodes[curr]
-        for e in edges:
-            nodes[curr] = edges[:].remove(e)
-            it.append(e)
-            if self.dfs(nodes, size-1, it):
+        for idx, node in enumerate(edges):
+            temp = edges[:]
+            del temp[idx]
+            nodes[curr] = temp
+            retList.append(node)
+            if self.dfs(nodes, retList, size - 1):
                 return True
-            nodes[curr] = edges
+            else:
+                nodes[curr] = edges
+                retList.pop()
         return False
 
 
-
-
-
 if __name__ == "__main__":
-    tickets = [["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]]
+    tickets = [["JFK", "KUL"], ["JFK", "NRT"], ["NRT", "JFK"]]
     sol = Solution()
     r = sol.findItinerary(tickets)
     print(r)
