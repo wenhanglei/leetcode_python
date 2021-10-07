@@ -4,6 +4,7 @@ My LeetCode Solution
 
 | # | Title | Solution | Difficulty |
 |---| ----- | -------- | ---------- |
+|346|[Increasing Triplet Subsequence](array/increasing_triplet_subsequence.py)|python|medium|
 |345|[Reconstruct Itinerary](graph/reconstruct_itinerary.py)|python|medium|
 |344|[Verify Preorder Serialization of a Binary Tree](list/odd_even_linked_list.py)|python|medium|
 |343|[Odd Even Linked List](list/odd_even_linked_list.py)|python|medium|
